@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://fonts/hour5.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://sprites/background.png" type="Texture" id=2]
+[ext_resource path="res://scenes/player.tscn" type="PackedScene" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 1 )
+
+[node name="stage" type="Node2D"]
+
+[node name="spawn_timer" type="Timer" parent="."]
+autostart = true
+
+[node name="background" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="player" parent="." instance=ExtResource( 3 )]
+position = Vector2( 45.0901, 95.2999 )
+
+[node name="ui" type="CanvasLayer" parent="."]
+
+[node name="score" type="Label" parent="ui"]
+margin_left = 8.75
+margin_top = 4.5
+margin_right = 48.75
+margin_bottom = 18.5
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.435294, 1, 0.733333, 1 )
+custom_colors/font_color_shadow = Color( 0.184314, 0.121569, 0.278431, 1 )
+text = "score: 0"
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="retry" type="Label" parent="ui"]
+visible = false
+margin_left = 96.5455
+margin_top = 63.4454
+margin_right = 250.546
+margin_bottom = 109.445
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.435294, 1, 0.733333, 1 )
+custom_colors/font_color_shadow = Color( 0.184314, 0.121569, 0.278431, 1 )
+text = "game over
+
+- press the enter key to retry -"
+align = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
