@@ -1,19 +1,21 @@
 extends Sprite
 
-var speed = 0
-var rot_speed = rand_range(-.1,.1)
+const SPEED = 100
+var device_index = 0
 
 func _ready():
-	pass # Replace with function body.
+	Input.connect("joy_connection_changed", self, "joy_connect")
 
-func _physics_process(delta):
-	speed += delta * 100
+func joy_connect(index, connect):
+	if connect:
+		device_index = index
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):		
-	position.y += speed * delta
-	rotation += rot_speed
+func _process(delta):
+	var direction = Vector2(0,0)
+	
+	if Input.is_joy_button_pressed(device_index, JOY_DPAD_UP):
+		direction.y -= 1.0
 
-	if position.y > get_viewport().size.y:
-		speed = -abs(speed)
-		
+	direction *= SPEED * delta
+	translate(direction)
+	
