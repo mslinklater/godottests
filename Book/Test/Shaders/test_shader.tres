@@ -1,0 +1,24 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+render_mode cull_disabled, diffuse_toon;
+
+uniform float plap;
+
+void vertex()
+{
+	VERTEX.x += sin(TIME + VERTEX.z);
+	VERTEX.y += cos(TIME);
+}
+
+void fragment()
+{
+	ALBEDO.r = NORMAL.r * plap;
+	ALBEDO.g = NORMAL.g;
+	ALBEDO.b = NORMAL.b;
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/plap = 0.75

@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://meshlib.meshlib" type="MeshLibrary" id=1]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.45, 0.05, 0.45 )
+
+[node name="Level" type="Spatial"]
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource( 1 )
+cell_size = Vector3( 1, 1, 1 )
+data = {
+"cells": PoolIntArray( 65529, 65531, 0 )
+}
+__meta__ = {
+"_editor_clip_": 0,
+"_editor_floor_": Vector3( 0, 0, 0 )
+}
+
+[node name="Start" type="Position3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 4, 0.5 )
+
+[node name="Ending" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Ending"]
+shape = SubResource( 1 )
+
+[node name="GravityTimer" type="Timer" parent="Ending"]
+
+[node name="InBounds" type="Area" parent="."]
+
+[node name="CollisionPolygon" type="CollisionPolygon" parent="InBounds"]
