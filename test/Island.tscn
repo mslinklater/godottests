@@ -1,0 +1,36 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=1]
+[ext_resource path="res://gameMapOutline.png" type="Texture" id=2]
+[ext_resource path="res://addons/zylann.hterrain/hterrain_texture_set.gd" type="Script" id=3]
+[ext_resource path="res://terrainData/data.hterrain" type="Resource" id=4]
+[ext_resource path="res://assets/maujoe.basic_water_material/materials/basic_water_material.material" type="Material" id=5]
+[ext_resource path="res://sandy_color.png" type="Texture" id=6]
+[ext_resource path="res://grass.jpg" type="Texture" id=7]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 3 )
+mode = 0
+textures = [ [ ExtResource( 2 ), ExtResource( 7 ), ExtResource( 6 ) ], [ null, null, null ] ]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="HTerrain" type="Spatial" parent="."]
+script = ExtResource( 1 )
+_terrain_data = ExtResource( 4 )
+chunk_size = 32
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4Lite"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource( 1 )
+shader_params/u_ground_uv_scale = 500.0
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = false
+shader_params/u_tile_reduction = Plane( 0, 0, 0, 0 )
+
+[node name="CSGCylinder" type="CSGCylinder" parent="HTerrain"]
+transform = Transform( 400, 0, 0, 0, 1, 0, 0, 0, 400, 250, -1, 250 )
+material = ExtResource( 5 )

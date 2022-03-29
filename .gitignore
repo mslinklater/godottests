@@ -7,3 +7,8 @@ export_presets.cfg
 # Mono-specific ignores
 .mono/
 data_*/
+Book/assets_advanced
+Book/assets_beginner
+Book/assets_foundations
+Book/assets_intermediate
+Book/assets_proficiency
